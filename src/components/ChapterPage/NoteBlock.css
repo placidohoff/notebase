@@ -1,0 +1,13 @@
+.noteBlock{
+    border: 1px solid black;
+    max-width: 300px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.noteBlock:hover{
+    transform: scale(1.007);
+}
