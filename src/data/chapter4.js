@@ -51,6 +51,7 @@ export default {
             notes: [
                 {
                     meta: 'img',
+                    note: 'test',
                     src: `https://www.linkpicture.com/q/2022-01-08.png`
                 }
             ]

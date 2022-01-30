@@ -32,3 +32,18 @@ code {
 .chapterButton>h1:hover{
   transform: scale(1.01);
 }
+
+.dialog {
+  /* position: fixed; */
+
+}
+
+.noteBlock__buttons>div>p{
+  border: 1px solid black;
+  padding: 5px 10px 10px 10px;
+  margin-top: -5px;
+}
+
+.image{
+  width: 300px;
+}

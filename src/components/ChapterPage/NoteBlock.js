@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Lightbox } from 'react-modal-image'
+import ImgLink from '../ImgLink'
 import './NoteBlock.css'
 
 function NoteBlock({ note }) {
@@ -35,9 +37,12 @@ function NoteBlock({ note }) {
 
                 }
                 {
-                    subnote.meta === 'img' && 
+                    subnote.meta === 'img' &&
                     <div>
-                        <img className='img-fluid' src={subnote.src} />
+                        {/* <img className='img-fluid' src={subnote.src} /> */}
+                        <ImgLink
+                            img={subnote}
+                        />
                     </div>
                 }
                 {
@@ -118,7 +123,7 @@ function NoteBlock({ note }) {
             <div>
                 {
                     example.meta === 'note' &&
-                    <div style={{marginLeft: '30px'}}>
+                    <div style={{ marginLeft: '30px' }}>
                         <span>{`ie: `}</span><span>{example.note}</span>
                     </div>
                 }
@@ -170,7 +175,7 @@ function NoteBlock({ note }) {
 
     return (
         <div className="noteBlock"
-            onClick={() => setShowMore(!showMore)}
+            style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}
         >
             <div className='noteBlock__container'>
                 <div className="noteBlock__main">
@@ -197,35 +202,45 @@ function NoteBlock({ note }) {
                         <p>{note.definition}</p>
                     </div>
                 }
-            </div>
-            {
-                note.notes && showMore &&
-                note.notes.map(subnote => (
-                    <SubNote
-                        key={Math.random()}
-                        subnote={subnote}
-                    />
-                ))
-            }
-            <div>
-                {note.list && showMore &&
-                    note.list.map(item => (
-                        <ListItem
+
+                {
+                    note.notes && showMore &&
+                    note.notes.map(subnote => (
+                        <SubNote
                             key={Math.random()}
-                            item={item}
+                            subnote={subnote}
+                        />
+                    ))
+                }
+                <div>
+                    {note.list && showMore &&
+                        note.list.map(item => (
+                            <ListItem
+                                key={Math.random()}
+                                item={item}
+                            />
+                        ))
+                    }
+                </div>
+                {
+                    note.examples && showMore &&
+                    note.examples.map(example => (
+                        <ShowExample
+                            key={Math.random()}
+                            example={example}
                         />
                     ))
                 }
             </div>
-            {
-                note.examples && showMore &&
-                note.examples.map(example => (
-                    <ShowExample
-                        key={Math.random()}
-                        example={example}
-                    />
-                ))
-            }
+            <div className='noteBlock__buttons'>
+                <div onClick={() => setShowMore(!showMore)}>
+                    {
+                        showMore
+                            ? <p>-</p>
+                            : <p>+</p>
+                    }
+                </div>
+            </div>
         </div>
     )
 }
